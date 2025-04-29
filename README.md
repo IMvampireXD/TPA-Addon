@@ -16,3 +16,10 @@ You can configure the TPA script as of your preferences in `config.js`
 
 # Supported Script API version:
 ## 2.0.0-beta
+
+# Installation
+1. Download the latest `.mcaddon` from the Releases page.
+2. Import the addon to Minecraft
+3. Add the behaviour pack to your world
+4. Enable the `Beta API` toggle in Experimental tab.
+5. Done!
