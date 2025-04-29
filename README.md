@@ -9,7 +9,7 @@ A Minecraft Bedrock TPA script, that adds a custom command with configurable pre
 - !unblocktpa (Unblock TPA requests.)
 
 # Configuration:
-### You can configure the TPA script as of your preferences in `config.js`
+You can configure the TPA script as of your preferences in `config.js`
 <a href="https://ibb.co.com/gbKZpP2C"><img src="https://i.ibb.co.com/zWvVY7Mw/Screenshot-1.png" alt="Screenshot-1" border="0" /></a>
 
 # Supported Script API version:
