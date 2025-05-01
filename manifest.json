@@ -1,0 +1,59 @@
+{
+	"format_version": 2,
+	"metadata": {
+		"authors": [
+			"finnafinest_"
+		],
+		"generated_with": {
+			"bridge": [
+				"2.7.45"
+			],
+			"dash": [
+				"0.11.7"
+			]
+		}
+	},
+	"header": {
+		"name": "TPA Addon",
+		"description": "Created by @finnafinest_",
+		"min_engine_version": [
+			1,
+			21,
+			0
+		],
+		"uuid": "83966586-9177-4a4a-a690-871a00bb4265",
+		"version": [
+			1,
+			0,
+			1
+		]
+	},
+	"modules": [
+		{
+			"type": "data",
+			"uuid": "09a34ba0-bfeb-4243-996d-0c7b1efb52a8",
+			"version": [
+				1,
+				0,
+				0
+			]
+		},
+		{
+			"type": "script",
+			"language": "javascript",
+			"uuid": "8ecd09ac-6d79-4279-8914-c0579f1fa983",
+			"entry": "scripts/main.js",
+			"version": [
+				1,
+				0,
+				0
+			]
+		}
+	],
+	"dependencies": [
+		{
+			"module_name": "@minecraft/server",
+			"version": "2.0.0-beta"
+		}
+	]
+}
