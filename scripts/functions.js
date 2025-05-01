@@ -1,5 +1,6 @@
 import { system, world, Player } from "@minecraft/server";
 import { config } from './config.js'
+import { blockedTpas } from './main.js'
 
 /**
  * @param {string} playerName
@@ -29,7 +30,7 @@ export function sendTPARequest(sender, targetPlayer) {
     if (sender.sentTo) return sender.sendMessage(`§eYou already have an outgoing TPA request`);
     if (blockedTpas.has(targetPlayer)) return sender.sendMessage(`§eThis player is currently not accepting TPA requests`);
 
-    senerd.sentTo = targetPlayer;
+    sender.sentTo = targetPlayer;
     targetPlayer.sentFrom = sender;
 
     targetPlayer.sendMessage(`§aYou recieved a tpa request from ${senderName}!  Accept it with "§l!tpa accept§r§a".`);
@@ -59,7 +60,7 @@ export function acceptTPARequest(requester, acceptor) {
         acceptor.sentFrom = undefined;
         return;
     }
-    requester.teleport(acceptor.location, { dimension: acceptor.dimension });
+    system.run(() => requester.teleport(acceptor.location, { dimension: acceptor.dimension }) );
     acceptor.sendMessage(`§aYou have accepted the teleport request from ${requester.name}! §a${requester.name} has been teleported to your location.`);
     requester.sendMessage(`§a${acceptor.name} has accepted your tpa request! §aYou have been teleported to ${acceptor.name}.`);
     requester.playSound(`mob.endermen.portal`);
