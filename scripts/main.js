@@ -10,7 +10,7 @@ import * as fn from "./functions.js";
 /**
  *  @type {WeakSet<Player>}
  */
-const blockedTpas = new WeakSet();
+export const blockedTpas = new WeakSet();
 
 world.beforeEvents.chatSend.subscribe(async chat => {
     const { sender, message } = chat;
@@ -55,6 +55,7 @@ world.beforeEvents.chatSend.subscribe(async chat => {
             }
             break;
         }
+
         case "blocktpa": {
             if (blockedTpas.has(sender)) return sender.sendMessage(`§6You are already blocking incoming TPA requests§r`);
             blockedTpas.add(sender);
