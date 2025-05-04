@@ -3,7 +3,7 @@
  * @helpers Alone, Remember M9, Cennac
  */
 
-import { system, world, Player } from "@minecraft/server";
+import { world, Player } from "@minecraft/server";
 import { config } from "./config.js";
 import * as fn from "./functions.js";
 
