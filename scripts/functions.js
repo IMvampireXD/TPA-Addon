@@ -39,14 +39,14 @@ export function sendTPARequest(sender, targetPlayer) {
         if (sender.sentTo == undefined && targetPlayer.sentFrom == undefined) return;
         if (sender.isValid) {
             sender.sendMessage(`§eYour teleport request to ${targetPlayerName} has expired.`);
-            sender.playSound(`mob.agent.spawn`);
+            system.run(() => sender.playSound(`mob.agent.spawn`));
         }
         if (targetPlayer.isValid) {
             targetPlayer.sendMessage(`§eThe teleport request from ${senderName} has expired.`);
-            targetPlayer.playSound(`mob.agent.spawn`);
+            system.run(() => targetPlayer.playSound(`mob.agent.spawn`));
         }
-        requester.sentTo = undefined
-        acceptor.sentFrom = undefined
+        requester.sentTo = undefined;
+        acceptor.sentFrom = undefined;
     });
 }
 
@@ -60,13 +60,15 @@ export function acceptTPARequest(requester, acceptor) {
         acceptor.sentFrom = undefined;
         return;
     }
-    system.run(() => requester.teleport(acceptor.location, { dimension: acceptor.dimension }) );
     acceptor.sendMessage(`§aYou have accepted the teleport request from ${requester.name}! §a${requester.name} has been teleported to your location.`);
     requester.sendMessage(`§a${acceptor.name} has accepted your tpa request! §aYou have been teleported to ${acceptor.name}.`);
-    requester.playSound(`mob.endermen.portal`);
-    acceptor.playSound(`mob.endermen.portal`);
-    requester.sentTo = undefined
-    acceptor.sentFrom = undefined
+    system.run(() => {
+        requester.teleport(acceptor.location, { dimension: acceptor.dimension })
+        requester.playSound(`mob.endermen.portal`);
+        acceptor.playSound(`mob.endermen.portal`);
+    });
+    requester.sentTo = undefined;
+    acceptor.sentFrom = undefined;
 }
 
 /**
@@ -76,11 +78,11 @@ export function acceptTPARequest(requester, acceptor) {
  */
 export function denyTPARequest(denier) {
     denier.sendMessage(`§aYou denied the teleport request from ${denier.sentFrom.name}.`);
+    system.run(() => denier.playSound(`mob.agent.spawn`));
     if (denier.sentFrom?.isValid) {
         denier.sentFrom.sendMessage(`§cYour teleport request to ${denier.name} was denied.`);
-        denier.sentFrom.playSound(`mob.agent.spawn`);
+        system.run(() => denier.sentFrom.playSound(`mob.agent.spawn`));
     }
-    denier.playSound(`mob.agent.spawn`);
     sentFrom.sentTo = undefined;
     denier.sentFrom = undefined;
 }
